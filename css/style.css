@@ -1,0 +1,393 @@
+/* Custom CSS untuk To-Do List Mini Project */
+
+/* Custom animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -8px, 0);
+    }
+    70% {
+        transform: translate3d(0, -4px, 0);
+    }
+    90% {
+        transform: translate3d(0, -2px, 0);
+    }
+}
+
+/* Base styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Header styling dengan gradient */
+h1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Form styling enhancements */
+.container > div {
+    animation: slideIn 0.6s ease-out forwards;
+}
+
+.container > div:nth-child(2) { animation-delay: 0.1s; }
+.container > div:nth-child(3) { animation-delay: 0.2s; }
+.container > div:nth-child(4) { animation-delay: 0.3s; }
+
+/* Input focus effects */
+input:focus, select:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #3b82f6;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Button hover effects */
+button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Priority badges styling */
+.priority-tinggi {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.priority-sedang {
+    background: linear-gradient(135deg, #feca57, #ff9f43);
+    color: white;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.priority-rendah {
+    background: linear-gradient(135deg, #48cab6, #2dd4bf);
+    color: white;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Task item styling */
+.task-item {
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.4s ease-out;
+}
+
+.task-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.task-item:hover::before {
+    opacity: 1;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+/* Completed task styling */
+.task-item.completed {
+    background: linear-gradient(145deg, #f0f9ff, #e0f2fe);
+    border-color: #0ea5e9;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: #64748b;
+}
+
+.task-item.completed::before {
+    background: linear-gradient(90deg, #0ea5e9, #0284c7);
+    opacity: 1;
+}
+
+/* Task content styling */
+.task-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.task-date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.task-date::before {
+    content: '📅';
+    font-size: 0.875rem;
+}
+
+/* Task actions */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.task-actions button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-complete {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.btn-complete:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+/* Empty state styling */
+#empty-state {
+    animation: fadeIn 0.6s ease-out;
+}
+
+#empty-state svg {
+    animation: bounce 2s infinite;
+}
+
+/* Statistics styling */
+.stats-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-weight: 600;
+}
+
+/* Form validation styling */
+.error-message {
+    background: linear-gradient(135deg, #fecaca, #fca5a5);
+    border: 1px solid #f87171;
+    color: #dc2626;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Success message */
+.success-message {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border: 1px solid #6ee7b7;
+    color: #047857;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-weight: 500;
+    animation: slideIn 0.4s ease-out;
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .task-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .task-actions {
+        justify-content: flex-end;
+        width: 100%;
+    }
+    
+    .task-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0f172a;
+        color: #e2e8f0;
+    }
+    
+    .task-item {
+        background: linear-gradient(145deg, #1e293b, #334155);
+        border-color: #475569;
+        color: #e2e8f0;
+    }
+    
+    .task-title {
+        color: #f1f5f9;
+    }
+    
+    .task-meta {
+        color: #94a3b8;
+    }
+}
